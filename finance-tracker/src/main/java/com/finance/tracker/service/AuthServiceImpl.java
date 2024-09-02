@@ -20,9 +20,11 @@ import com.finance.tracker.utility.CustomPasswordGenerator;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 
 @Scope("singleton")
 @Service
+@Slf4j
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
@@ -31,6 +33,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional(readOnly = true)
     public UserDTO login(UserDTO userDTO) throws NotFoundException {
+        log.info("login()");
         if (userDTO == null) {
             throw new NotFoundException("null userDTO");
         }
